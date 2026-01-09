@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "methods": [
+        "get"
+      ],
+      "rewrite": "https://cloud-calculator-api.internal.calmforest-d46bdaff.westeurope.azurecontainerapps.io/:splat",
+      "allowedRoles": [
+        "anonymous"
+      ]
+    }
+  ]
+}
