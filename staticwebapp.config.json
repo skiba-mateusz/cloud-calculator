@@ -1,11 +1,11 @@
 {
   "routes": [
     {
-      "route": "/api/*",
+      "route": "/api/:path*",
       "methods": [
         "get"
       ],
-      "rewrite": "https://cloud-calculator-api.internal.calmforest-d46bdaff.westeurope.azurecontainerapps.io/:splat",
+      "rewrite": "https://cloud-calculator-api.internal.calmforest-d46bdaff.westeurope.azurecontainerapps.io/{path}",
       "allowedRoles": [
         "anonymous"
       ]
