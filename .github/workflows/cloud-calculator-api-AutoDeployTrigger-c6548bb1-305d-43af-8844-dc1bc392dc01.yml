@@ -4,19 +4,18 @@ name: Trigger auto deployment for cloud-calculator-api
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
+    branches: [main]
     paths:
-    - '**'
-    - '.github/workflows/cloud-calculator-api-AutoDeployTrigger-c6548bb1-305d-43af-8844-dc1bc392dc01.yml'
+      - "**"
+      - ".github/workflows/cloud-calculator-api-AutoDeployTrigger-c6548bb1-305d-43af-8844-dc1bc392dc01.yml"
 
-  # Allow manual trigger 
-  workflow_dispatch:      
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
 
@@ -42,8 +41,6 @@ jobs:
           registryPassword: ${{ secrets.CLOUDCALCULATORAPI_REGISTRY_PASSWORD }}
           containerAppName: cloud-calculator-api
           resourceGroup: rg-cloudcalculator-dev
-          imageToBuild: cloudcalculatoracr.azurecr.io/cloud-calculator-api:${{ github.sha }}
+          imageToBuild: cloudcalculatoracr.azurecr.io/cloud-calculator:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
-
-
