@@ -13,6 +13,10 @@ def root():
 def add(a: float, b: float):
     return {"data": a + b}
 
+@api_router.get("/subtract")
+def subtract(a: float, b: float):
+    return {"data": a - b}
+
 @api_router.get("/health")
 def health_check():
     return {"status": "ok", "version": os.getenv("API_VERSION", "1.0.0")}

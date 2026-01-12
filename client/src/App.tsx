@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from "react";
 
-type Operation = "add";
+type Operation = "add" | "subtract";
 
 const OPERATIONS: Record<Operation, string> = {
   add: "+",
+  subtract: "-",
 };
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
     if (!valA || !valB) return;
 
-    const res = await fetch(`/api/add?a=${valA}&b=${valB}`);
+    const res = await fetch(`/api/${operation}?a=${valA}&b=${valB}`);
     const { data } = await res.json();
 
     setResult(data);
@@ -28,12 +29,16 @@ function App() {
       <form onSubmit={handleSubmit}>
         <select
           name="operation"
-          onChange={(e) => setOperation(e.target.value as Operation)}
+          onChange={(e) => {
+            setOperation(e.target.value as Operation);
+            setResult(null);
+          }}
           value={operation}
         >
           <option value="add" selected>
             + (addition)
           </option>
+          <option value="subtract">- (subtraction)</option>
         </select>
         <input
           type="number"
